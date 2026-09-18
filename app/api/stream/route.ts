@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
-    const ytDlpPath = path.join(process.cwd(), 'yt-dlp.exe');
+    const ytDlpPath = process.platform === 'win32' ? path.join(process.cwd(), 'yt-dlp.exe') : 'yt-dlp';
 
     // Chạy trực tiếp file yt-dlp.exe từ thư mục gốc
     const { stdout } = await execFileAsync(ytDlpPath, [

@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const ytDlpPath = path.join(process.cwd(), 'yt-dlp.exe');
+    const ytDlpPath = process.platform === 'win32' ? path.join(process.cwd(), 'yt-dlp.exe') : 'yt-dlp';
 
     // Tìm kiếm 15 video liên quan nhất bằng ytsearch15
     const { stdout } = await execFileAsync(ytDlpPath, [
